@@ -8,4 +8,4 @@ npm install
 node index
 ```
 
-http://localhost:3000/chat
+http://localhost:3000
