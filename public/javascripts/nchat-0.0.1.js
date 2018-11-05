@@ -17,8 +17,6 @@ var nchat = function (container, server) {
         chat.showInput(conversation.send);
     };
 
-
-
     conversation.send = function (msg) {
         if (!msg) return;
         conversation.myLastMsg = msg;
@@ -29,15 +27,6 @@ var nchat = function (container, server) {
     socket.on('message', function (msg) {
         if (msg == conversation.myLastMsg) return;
         chat.addBubble({ type: 'text', value: msg, class: 'bot', delay: 0 });
-    });
-
-
-    socket.on('join', function (n) {
-        chat.addBubble({ type: 'text', value: '一位 Newegger 冲了进来，当前总计有 ' + n + ' 位 Newgger 在线', class: 'bot', delay: 0 });
-    });
-
-    socket.on('left', function (n) {
-        chat.addBubble({ type: 'text', value: '一位 Newegger 转身离开，当前总计有 ' + n + ' 位 Newgger 在线', class: 'bot', delay: 0 });
     });
 
 
