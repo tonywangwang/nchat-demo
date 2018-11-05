@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+  <title>N-Chat</title>
+  <style link="">
+    
+</style>
+  <link href="/stylesheets/index.css" rel="stylesheet">
+  <link rel="shortcut icon" type="image/png" href="/images/favicon.png">
+</head>
+
+<body>
+   在线人数： <span id='user'></span>
+  <ul id="messages"></ul>
+
+  <form action="">
+    <input id="m" autocomplete="off" /><button>Send</button>
+  </form>
+  <script src="/javascripts/socket.io-1.2.0.js"></script>
+  <script src="/javascripts/jquery-1.11.1.js"></script>
+  <script>
+    $(function () {
+      var socket = io.connect('ws://localhost:3000');
+      socket.emit('login');
+      $('form').submit(function () {
+        socket.emit('message', $('#m').val());
+        $('#m').val('');
+        return false; t
+      });
+      socket.on('message', function (msg) {
+        $('#messages').append($('<li>').text(msg));
+        window.scrollTo(0, document.body.scrollHeight);
+      });
+
+      socket.on('user', function (user) {
+        $('#user').text(user);
+      });
+    })
+  </script>
+</body>
+
+</html>
