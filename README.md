@@ -1,7 +1,7 @@
 # N-Chat
 
 ```
-npm install rpi-gpio
+npm install
 ```
 
 ```
